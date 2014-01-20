@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Transformations x="817" y="392">
+<Objects x="669" y="392">
+<Color Alias="WizardColor1" Value="#ffffff" x="191" y="424">
+  <Target Alias="LeftBoxBodyBackgroundColor" permanent="1" x="21" y="437" />
+  <Target Alias="ContentListBackgroundColor" permanent="1" x="20" y="412" />
+</Color>
+<Color Alias="WizardColor2" Value="#e2e2ec" x="191" y="609">
+  <Target Alias="LayoutBackgroundColor" permanent="1" x="30" y="608" />
+</Color>
+<Object Alias="LayoutWidth" Value="930px" x="520" y="345">
+  <Target Alias="LayoutWidth" permanent="1" x="520" y="293" />
+</Object>
+<Color Alias="PriceColor" Value="#CC0023" x="192" y="576">
+  <Target Alias="ContentHotDealPriceColor" permanent="1" x="31" y="575" />
+</Color>
+<Color Alias="Type" x="186" y="105">
+  <Target Alias="LeftLinkColor" x="551" y="76" />
+  <Target Alias="LeftParagraphColor" x="16" y="33" />
+  <Target Alias="ContentParagraphColor" x="14" y="55" />
+  <Target Alias="ContentLinkColor" x="15" y="78" />
+  <Target Alias="TopLinkColor" x="13" y="101" />
+  <Target Alias="TopParagraphColor" x="14" y="121" />
+  <Target Alias="LeftHeadlineColor" x="12" y="142" />
+  <Target Alias="ContentHeadline1Color" x="15" y="163" />
+  <Target Alias="ContentHeadline2Color" x="11" y="184" />
+  <Target Alias="ContentHeadline3Color" x="14" y="206" />
+  <Target Alias="ContentListHeadHeadlineColor" x="13" y="228" />
+</Color>
+<Color Alias="Type_2" x="190" y="305">
+  <Target Alias="LeftLinkHoverColor" x="20" y="329" />
+  <Target Alias="ContentLinkHoverColor" x="22" y="305" />
+  <Target Alias="TopLinkHoverColor" x="22" y="281" />
+</Color>
+<Color Alias="Type_3" x="192" y="500">
+  <Target Alias="ContentListAlternateBackgroundColor" x="30" y="501" />
+</Color>
+<Color Alias="Type_4" x="192" y="536">
+  <Target Alias="ContentListHeadBackgroundColor" x="30" y="535" />
+</Color>
+  <Image Alias="TopBackgroundImage" Value="bgr_top_floatin" x="486" y="506" />
+  <Image Alias="LeftBackgroundImage" Value="bgr_left" x="491" y="872" />
+  <Image Alias="LeftBoxImage" Value="bgr_left_boxhead" x="489" y="756" />
+  <Image Alias="ContentListHeadImage" Value="bgr_listhead" x="487" y="484" />
+  <Image Alias="ContentListFootImage" Value="bgr_listfoot" x="490" y="599" />
+  <Image Alias="ContentCheckoutImage" Value="bgr_orderprocess_item" x="485" y="529" />
+  <Image Alias="ContentCheckoutImageActive" Value="bgr_orderprocess_activeitem" x="490" y="825" />
+  <Image Alias="ContentHotDealImage" Value="bgr_hotdealboxhead" x="497" y="850" />
+  <Image Alias="ContentHotDealImageSlim" Value="bgr_hotdealboxslim" x="487" y="781" />
+  <Color Alias="Transparent" x="193" y="653" />
+  <Image Alias="TransparentImage" x="487" y="554" />
+  <Image Alias="keyvisual" Value="keyvisual.png" x="490" y="802" />
+  <Image Alias="tmp_keyvisual" Value="tmp_keyvisual.png" Temporary="1" x="488" y="575" />
+  <Image Alias="top_floatin_overlay" Value="top_floatin_overlay.png" x="498" y="891" />
+  <Image Alias="top_floatin_alpha" Value="top_floatin_alpha.png" x="500" y="914" />
+  <Image Alias="top_floatin_shadow" Value="top_floatin_shadow.png" x="487" y="622" />
+  <Image Alias="left_overlay" Value="left_overlay.png" x="503" y="938" />
+  <Image Alias="left_alpha" Value="left_alpha.png" x="507" y="1074" />
+  <Image Alias="left_shadow" Value="left_shadow.png" x="483" y="646" />
+  <Image Alias="left_boxhead_overlay" Value="left_boxhead_overlay.png" x="493" y="962" />
+  <Image Alias="left_boxhead_alpha" Value="left_boxhead_alpha.png" x="506" y="1091" />
+  <Image Alias="listhead_overlay" Value="listhead_overlay.png" x="485" y="667" />
+  <Image Alias="listhead_alpha" Value="listhead_alpha.png" x="492" y="983" />
+  <Image Alias="listfoot_overlay" Value="listfoot_overlay.png" x="507" y="1113" />
+  <Image Alias="listfoot_alpha" Value="listfoot_alpha.png" x="481" y="688" />
+  <Image Alias="orderprocess_item_overlay" Value="orderprocess_item_overlay.png" x="495" y="1007" />
+  <Image Alias="orderprocess_item_alpha" Value="orderprocess_item_alpha.png" x="505" y="1138" />
+  <Image Alias="orderprocess_activeitem_overlay" Value="orderprocess_activeitem_overlay.png" x="483" y="710" />
+  <Image Alias="orderprocess_activeitem_alpha" Value="orderprocess_activeitem_alpha.png" x="498" y="1030" />
+  <Image Alias="hotdealboxhead_overlay" Value="hotdealboxhead_overlay.png" x="505" y="1159" />
+  <Image Alias="hotdealboxhead_alpha" Value="hotdealboxhead_alpha.png" x="486" y="733" />
+  <Image Alias="hotdealboxslim_overlay" Value="hotdealboxslim_overlay.png" x="504" y="1051" />
+  <Image Alias="hotdealboxslim_alpha" Value="hotdealboxslim_alpha.png" x="502" y="1182" />
+</Objects>
+<ColorTransformation Source="WizardColor1" Target="Transparent" x="1019" y="68">
+  <Set Alpha="0" x="1194" y="67" />
+</ColorTransformation>
+<ColorTransformation Source="WizardColor2" Target="Type" x="1023" y="99">
+  <AddColorOffset Hue="-20" Saturation="90" Brightness="-25" x="1192" y="98" />
+</ColorTransformation>
+<ColorTransformation Source="WizardColor2" Target="Type_2" x="1020" y="127">
+  <AddColorOffset Hue="-196" Saturation="100" Brightness="0" x="1199" y="128" />
+</ColorTransformation>
+<ColorTransformation Source="WizardColor2" Target="Type_3" x="1024" y="164">
+  <AddColorOffset Hue="-60" Saturation="-4" Brightness="-5" x="1196" y="162" />
+</ColorTransformation>
+<ColorTransformation Source="WizardColor2" Target="Type_4" x="1021" y="37">
+  <AddColorOffset Hue="-17" Saturation="-1" Brightness="-12" x="1195" y="38" />
+</ColorTransformation>
+<ImageTransformation Source="top_floatin_overlay" Target="TopBackgroundImage" Depends="WizardColor2" x="960" y="453">
+  <Canvas background="WizardColor1" gravity="SouthEast" geometry="716x88+0+0" x="1113" y="470" />
+  <Composite compose="DstOut" image="top_floatin_alpha" x="1113" y="445" />
+  <Composite compose="SrcOver" image="top_floatin_shadow" x="1113" y="419" />
+</ImageTransformation>
+<ImageTransformation Source="left_overlay" Target="LeftBackgroundImage" Depends="WizardColor2" x="960" y="577">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="500x88+0+0" x="1107" y="550" />
+  <Composite compose="DstOut" image="left_alpha" x="1107" y="574" />
+  <Composite compose="SrcOver" image="left_shadow" x="1110" y="599" />
+</ImageTransformation>
+<ImageTransformation Source="left_boxhead_overlay" Target="LeftBoxImage" x="1377" y="452">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="205x24+0+0" x="1530" y="434" />
+  <Composite compose="DstOut" image="left_boxhead_alpha" x="1533" y="463" />
+</ImageTransformation>
+<ImageTransformation Source="listhead_overlay" Target="ContentListHeadImage" x="962" y="717">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="695x24+0+0" x="1114" y="699" />
+  <Composite compose="DstOut" image="listhead_alpha" x="1112" y="721" />
+  <Canvas background="WizardColor2" gravity="NorthWest" geometry="6950+0" x="1113" y="747" />
+</ImageTransformation>
+<ImageTransformation Source="listfoot_overlay" Target="ContentListFootImage" x="964" y="855">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="69524+0+0" x="1125" y="832" />
+  <Composite compose="DstOut" image="listfoot_alpha" x="1123" y="856" />
+  <Canvas background="WizardColor2" gravity="NorthWest" geometry="695x24+0+0" x="1126" y="883" />
+</ImageTransformation>
+<ImageTransformation Source="orderprocess_item_overlay" Target="ContentCheckoutImage" x="1382" y="575">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="100x100+0+0" x="1536" y="592" />
+  <Composite compose="DstOut" image="orderprocess_item_alpha" x="1537" y="558" />
+</ImageTransformation>
+<ImageTransformation Source="orderprocess_activeitem_overlay" Target="ContentCheckoutImageActive" x="1391" y="719">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="100x100+0+0" x="1541" y="705" />
+  <Composite compose="DstOut" image="orderprocess_activeitem_alpha" x="1539" y="728" />
+</ImageTransformation>
+<ImageTransformation Source="hotdealboxhead_overlay" Target="ContentHotDealImage" x="970" y="995">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="162x220+0+0" x="1118" y="1016" />
+  <Composite compose="DstOut" image="hotdealboxhead_alpha" x="1121" y="976" />
+</ImageTransformation>
+<ImageTransformation Source="hotdealboxslim_overlay" Target="ContentHotDealImageSlim" x="1405" y="854">
+  <Canvas background="WizardColor1" gravity="NorthWest" geometry="112x0+0+0" x="1557" y="872" />
+  <Composite compose="DstOut" image="hotdealboxslim_alpha" x="1557" y="841" />
+</ImageTransformation>
+</Transformations>

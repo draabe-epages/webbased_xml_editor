@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Transformations>
+  <Objects>
+  <!-- Input source/user data -->
+    
+    <Color Alias="WizardColor1" />
+    <Color Alias="WizardColor2" >
+      <Target Alias="ContentHotDealPriceColor" />
+      <Target Alias="ContentListPagePriceColor" />
+      <Target Alias="ContentDetailPagePriceColor" />
+      <Target Alias="ContentListPagePriceColor" />
+      <Target Alias="HeaderParagraphColor" />
+      <Target Alias="ContentHeadline1Color" />
+      <Target Alias="ContentLinkColor" />
+      <Target Alias="LeftLinkColor" />
+      <Target Alias="RightLinkColor" />
+      <Target Alias="BottomLinkColor" />
+    </Color>
+    
+    <Image Alias="WizardImage1" Value="bgr_header.png" />
+    <Image Alias="HeaderBackgroundImage" Value="bgr_header" />
+    <Image Alias="header_overlay" Value="bgr_header_overlay.png"  />
+    <Image Alias="header_alpha" Value="bgr_header_alpha.png"  />
+    
+    <!-- references background top image -->
+    <Image Alias="TopBackgroundImage" Value="bgr_top" />
+    <Image Alias="tmp_topimage" Value="bgr_top.png" />
+    <Image Alias="tmp_topalpha" Value="bgr_top_alpha.png" />
+    
+     <!-- references background left box image -->
+    <Image Alias="tmp_boximage" Value="bgr_left_boxhead.png" />
+    <Image Alias="tmp_boxalpha" Value="bgr_left_boxhead_alpha.png" />
+    <Image Alias="LeftBoxImage" Value="bgr_left_boxhead" />
+    <Image Alias="RightBoxImage" Value="bgr_right_boxhead" />
+    
+  </Objects>
+
+    <!-- transformation background header image -->
+  <ImageTransformation Source="WizardImage1" Target="HeaderBackgroundImage">
+    <Resize geometry="1000" />
+    <Crop gravity="center" geometry="1000x118+0+0" />
+    <Composite compose="DstIn" image="header_overlay"  geometry="1000x118+0+0" />
+    <Composite compose="SrcOver" image="header_alpha" />    
+  </ImageTransformation>
+  
+  <!-- transformation background top image -->
+  <ImageTransformation Source="tmp_topimage" Target="TopBackgroundImage">
+    <Resize geometry="1000" />
+    <Crop gravity="center" geometry="1000x64+0+0" />
+    <Canvas background="WizardColor1" geometry="1000x64+0+0" />
+    <Composite compose="DstIn" image="tmp_topalpha" geometry="1000x64" />
+  </ImageTransformation>
+
+  <!-- transformation background left box image -->
+  <ImageTransformation Source="tmp_boximage" Target="LeftBoxImage">	
+    <Resize geometry="221" />
+    <Crop gravity="center" geometry="221x37+0+0" />
+    <Composite compose="DstIn" image="tmp_boximage" geometry="221x37" />
+    <Canvas background="WizardColor2" geometry="221x37+0+0" />
+    <Composite compose="DstIn" image="tmp_boxalpha" geometry="221x37" />
+  </ImageTransformation>
+  <ImageTransformation Source="LeftBoxImage" Target="RightBoxImage" />
+
+</Transformations>

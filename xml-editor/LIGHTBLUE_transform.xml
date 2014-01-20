@@ -1,0 +1,189 @@
+<?xml	version="1.0"	encoding="UTF-8"?>
+<Transformations>
+	<Objects>
+	<!-- Input source/user data	-->
+
+		<Color Alias="WizardColor1"																Value="#ffffff"	>			<!-- White -->
+			 <Target Alias="LeftBoxBodyBackgroundColor"							permanent="1"	/>
+			 <Target	Alias="ContentListBackgroundColor"						permanent="1"	/>
+		</Color>
+
+		<Color Alias="WizardColor2"																Value="#e2e2ec"	>			<!-- GreyBlue	-->
+			<Target	Alias="LayoutBackgroundColor"										permanent="1"	/>
+
+		</Color>
+
+		<!-- Output	-->
+		<Object	Alias="LayoutWidth"																Value="930px">
+			<Target	Alias="LayoutWidth"	permanent="1"	/>
+		</Object>
+
+		<Image Alias="TopBackgroundImage"													Value="bgr_top_floatin"	/>
+
+		<Image Alias="LeftBackgroundImage"												Value="bgr_left" />
+		<Image Alias="LeftBoxImage"																Value="bgr_left_boxhead" />
+
+		<Image Alias="ContentListHeadImage"												Value="bgr_listhead" />
+		<Image Alias="ContentListFootImage"												Value="bgr_listfoot" />
+
+		<Image Alias="ContentCheckoutImage"												Value="bgr_orderprocess_item"	/>
+		<Image Alias="ContentCheckoutImageActive"									Value="bgr_orderprocess_activeitem"	/>
+
+		<Image Alias="ContentHotDealImage"												Value="bgr_hotdealboxhead"	/>
+		<Image Alias="ContentHotDealImageSlim"										Value="bgr_hotdealboxslim"	/>
+
+		<Color Alias="PriceColor"																	Value="#CC0023"	>		 <!--	Color	Red	-->
+			<Target	Alias="ContentHotDealPriceColor"								permanent="1"	/>
+		</Color>
+
+		<Color Alias="Transparent"	/>
+
+		<Color Alias="Type"	>																		<!-- Color of Type GreyBlue	-->
+			<Target	Alias="LeftLinkColor"	/>
+			<Target	Alias="LeftParagraphColor"	/>
+			<Target	Alias="ContentParagraphColor"	/>
+			<Target	Alias="ContentLinkColor"	/>
+			<Target	Alias="TopLinkColor"	/>
+			<Target	Alias="TopParagraphColor"	/>
+			<Target	Alias="LeftHeadlineColor"	/>
+			<Target	Alias="ContentHeadline1Color"	/>
+			<Target	Alias="ContentHeadline2Color"	/>
+			<Target	Alias="ContentHeadline3Color"	/>
+			<Target	Alias="ContentListHeadHeadlineColor"	/>
+		</Color>
+
+		<Color Alias="Type_2"	>																	<!-- Color of	Type 2 alternate Color Orange	-->
+			<Target	Alias="LeftLinkHoverColor"	/>
+			<Target	Alias="ContentLinkHoverColor"	/>
+			<Target	Alias="TopLinkHoverColor"	/>
+		</Color>
+
+		<Color Alias="Type_3"	>																	<!-- Color of	ContentBackround	-->
+			<Target	Alias="ContentListAlternateBackgroundColor"				/>
+		</Color>
+
+		<Color Alias="Type_4"	>																	<!-- Color of	ContentBackround	-->
+			<Target	Alias="ContentListHeadBackgroundColor"	/>
+		</Color>
+
+		<!--	Tools	-->
+		<Image Alias="TransparentImage"	/>
+
+		<Image Alias="keyvisual"																	Value="keyvisual.png"	/>
+		<Image Alias="tmp_keyvisual"															Value="tmp_keyvisual.png"	Temporary="1"	/>
+
+		<!-- Top -->
+		<Image Alias="top_floatin_overlay"												Value="top_floatin_overlay.png"	/>
+		<Image Alias="top_floatin_alpha"													Value="top_floatin_alpha.png"	/>
+		<Image Alias="top_floatin_shadow"													Value="top_floatin_shadow.png"	 />
+
+		<!-- Left	-->
+		<Image Alias="left_overlay"																Value="left_overlay.png"	 />
+		<Image Alias="left_alpha"																	Value="left_alpha.png"	 />
+		<Image Alias="left_shadow"																Value="left_shadow.png"	/>
+
+		<!-- Box -->
+		<Image Alias="left_boxhead_overlay"												Value="left_boxhead_overlay.png"	 />
+		<Image Alias="left_boxhead_alpha"													Value="left_boxhead_alpha.png"	 />
+
+		<!-- Content -->
+		<Image Alias="listhead_overlay"														Value="listhead_overlay.png"	 />
+		<Image Alias="listhead_alpha"															Value="listhead_alpha.png"	 />
+
+		<Image Alias="listfoot_overlay"														Value="listfoot_overlay.png"	 />
+		<Image Alias="listfoot_alpha"															Value="listfoot_alpha.png"	/>
+
+		<Image Alias="orderprocess_item_overlay"									Value="orderprocess_item_overlay.png"	/>
+		<Image Alias="orderprocess_item_alpha"										Value="orderprocess_item_alpha.png"	/>
+
+		<Image Alias="orderprocess_activeitem_overlay"						Value="orderprocess_activeitem_overlay.png"	/>
+		<Image Alias="orderprocess_activeitem_alpha"							Value="orderprocess_activeitem_alpha.png"	/>
+
+		<Image Alias="hotdealboxhead_overlay"											Value="hotdealboxhead_overlay.png"	 />
+		<Image Alias="hotdealboxhead_alpha"												Value="hotdealboxhead_alpha.png"	 />
+
+		<Image Alias="hotdealboxslim_overlay"											Value="hotdealboxslim_overlay.png"	 />
+		<Image Alias="hotdealboxslim_alpha"												Value="hotdealboxslim_alpha.png"	/>
+	</Objects>
+
+		<ColorTransformation	Source="WizardColor1"	Target="Transparent">
+			<Set	Alpha="0"	/>
+		</ColorTransformation>
+
+		<ColorTransformation	Source="WizardColor2"	Target="Type">							<!-- Color of Type GreyBlue	-->
+			<AddColorOffset	Hue="-20"	Saturation="90"	Brightness="-25"	/>
+		</ColorTransformation>
+
+		<ColorTransformation	Source="WizardColor2"	Target="Type_2">						<!-- Color of	Type 2 alternate Color Orange	-->
+			<AddColorOffset	Hue="-196"	Saturation="100"	Brightness="0"	/>
+		</ColorTransformation>
+
+		<ColorTransformation	Source="WizardColor2"	Target="Type_3">						<!-- Color of	ContentBackground	-->
+			<AddColorOffset	Hue="-60"	Saturation="-4"	Brightness="-5"	/>
+		</ColorTransformation>
+
+		<ColorTransformation	Source="WizardColor2"	Target="Type_4">						<!-- Color of	ContentListHeadBackground	-->
+			<AddColorOffset	Hue="-17"	Saturation="-1"	Brightness="-12"	/>
+		</ColorTransformation>
+
+		<!--	Top	-->
+		<ImageTransformation	Source="top_floatin_overlay" Target="TopBackgroundImage" Depends="WizardColor2"> <!--	Depends="WizardColor2" Forced Transformation	for	WizardColor2 -->
+			<Canvas	background="WizardColor1"	gravity="SouthEast"	geometry="716x88+0+0"	/>
+			<Composite	compose="DstOut"	image="top_floatin_alpha"	/>						<!--	cut	alpha	-->
+			<Composite	compose="SrcOver"	image="top_floatin_shadow"	/>					<!--	add	shadow	-->
+		</ImageTransformation>
+
+		<!--	Left -->
+		<ImageTransformation	Source="left_overlay"	Target="LeftBackgroundImage" Depends="WizardColor2">       <!-- Depends="WizardColor2" Forced Transformation	for	WizardColor2-->
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="500x88+0+0"	/>
+			<Composite	compose="DstOut"	image="left_alpha" />										<!--	cut	alpha	-->
+			<Composite	compose="SrcOver"	image="left_shadow"	/>									<!--	add	shadow	-->
+		</ImageTransformation>
+
+
+		<!--	LeftBoxhead	-->
+		<ImageTransformation Source="left_boxhead_overlay" Target="LeftBoxImage">
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="205x24+0+0"	/>
+			<Composite	compose="DstOut"	image="left_boxhead_alpha" />						<!-- cut alpha -->
+		</ImageTransformation>
+
+			<!--Listhead	-->
+		<ImageTransformation	Source="listhead_overlay"	Target="ContentListHeadImage">
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="695x24+0+0"	/>
+			<Composite	compose="DstOut"	image="listhead_alpha" />								<!-- cut alpha -->
+			<Canvas	background="WizardColor2"	gravity="NorthWest"	geometry="6950+0"	/>
+		</ImageTransformation>
+
+		<!--Listfoot	-->
+		<ImageTransformation	Source="listfoot_overlay"	Target="ContentListFootImage">
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="69524+0+0"	/>
+			<Composite	compose="DstOut"	image="listfoot_alpha" />								<!--	cut	alpha	-->
+			<Canvas	background="WizardColor2"	gravity="NorthWest"	geometry="695x24+0+0"	/>
+		</ImageTransformation>
+
+		<!--Seperatorline	-->
+
+		<!--	Orderprocess -->
+		<ImageTransformation	Source="orderprocess_item_overlay" Target="ContentCheckoutImage">
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="100x100+0+0"	/>
+			<Composite	compose="DstOut"	image="orderprocess_item_alpha"	/>				<!-- cut alpha -->
+		</ImageTransformation>
+
+		<ImageTransformation	Source="orderprocess_activeitem_overlay" Target="ContentCheckoutImageActive">
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="100x100+0+0"	/>
+			<Composite	compose="DstOut"	image="orderprocess_activeitem_alpha"	/> 	<!--	cut	alpha	-->
+		</ImageTransformation>
+
+		<!--	Holtdealbox	normal -->
+		<ImageTransformation	Source="hotdealboxhead_overlay"	Target="ContentHotDealImage">
+		 <Canvas background="WizardColor1" gravity="NorthWest" geometry="162x220+0+0"	/>
+		 <Composite	compose="DstOut"	image="hotdealboxhead_alpha" />							<!-- cut alpha -->
+		</ImageTransformation>
+
+		<!--	HotdealboxSlim -->
+		<ImageTransformation	Source="hotdealboxslim_overlay"	Target="ContentHotDealImageSlim">
+			<Canvas	background="WizardColor1"	gravity="NorthWest"	geometry="112x0+0+0"	/>
+			<Composite	compose="DstOut"	image="hotdealboxslim_alpha" />					<!-- cut alpha -->
+		</ImageTransformation>
+
+</Transformations>

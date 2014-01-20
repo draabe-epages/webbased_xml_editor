@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<link href='http://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:300' rel='stylesheet' type='text/css'>
+
+<style type="text/css">
+.bluebutton {
+  margin:12px 0;
+  background-color:transparent;
+  border: 0px solid #0082F6;
+  display:inline-block;
+  color:#FAFAFA;
+  font-family:"Source Code Pro";
+  font-size: 14px;
+  padding:2px 14px;
+  text-decoration:none;
+}
+.bluebutton:hover {
+  color: #E26F50;
+  cursor: pointer;
+}
+.bluebutton:active {
+  position:relative;
+  top:1px;
+}
+.control {
+  padding: 0 46px;
+  background: #58585C;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+.verticalControl {
+  display: none;
+  background: #58585C;
+  position: fixed;
+  width: 46px;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+}
+#canvas {
+  background: #FAFAFA;
+  margin-top: 28px;
+  width: 100%;
+  left: 0px;
+  position: absolute;
+}
+input {
+  border: 0px;
+}
+.control span {
+  color: #FAFAFA;
+  font-family: "Source Code Pro";
+  font-size: 11px;
+}
+.control .input {
+  padding-right: 1px;
+}
+select {
+  border: 0px;
+}
+#dropdown {
+  position: absolute;
+  left: 25px;
+  height: 144px;
+  top: 0px;
+  background: #249CD5;
+  visibility: hidden;
+  fill-opacity: 0.8;
+  padding: 0 2px;
+}
+.fileinput {
+  display: none;
+}
+#menu-icon {
+  width: 46px;
+  height: 46px; 
+  background: url(http://icons.iconarchive.com/icons/visualpharm/icons8-metro-style/64/Halloween-Witch-icon.png) center no-repeat #E04006;
+  background-size: 32px;
+  display: block;
+  float: left;
+}
+.logo {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+}
+
+  @media only screen and (max-width: 1224px){
+    .control {
+      display: none;
+      width: 46px;
+    }
+    .verticalControl {
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+
+    }
+    .logo {
+      display: none;
+    }
+    .logoVertical {
+      display: initial;
+    }
+    .bluebutton {
+      display: block;
+      position: absolute;
+      left: 0px;
+      top: 50px;
+    }
+    .bluebuttonVertical {
+      display: block;
+      border: 0px;
+      position: relative;
+      
+      left: 2px;
+      background: transparent;
+      padding-top: 16px;
+    }
+    #menu-icon {
+      position: relative;
+    }
+    .white {
+      width: 26px;
+      height: 26px;
+    }
+    .soylent-red {
+      width: 26px;
+      height: 26px;
+      display: none;
+    }
+    .bluebuttonVertical:hover .white {
+      display: none;
+    }
+    .bluebuttonVertical:hover .soylent-red {
+      display: initial;
+      cursor: pointer;
+    }
+  }
+</style>
+
+    <title>
+        XML Editor Rabi
+    </title>
+    
+    <script type="text/javascript" src="raphael-min_2.1.0.js"></script>
+    <script type="text/javascript" src="raphael.inline_text_editing.js"></script>
+    <script type="text/javascript" src="dracula_graph.js"></script>
+    <script type="text/javascript" src="dracula_graffle.js"></script>
+    <script type="text/javascript" src="dracula_algorithms.js"></script>
+    <script type="text/javascript" src="underscore.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="knoten_hilfsfunktionen.js"></script>
+    <script type="text/javascript" src="FileSaver.js"></script>
+    <script type="text/javascript" src="jQuery.xml2json.js"></script>
+    
+    
+
+</head>
+
+<body id="background" style="background: #FAFAFA">
+  <div class="logo">
+    <a href="http://www.student.hs-mittweida.de/~draabe1/epages/xml_editor.html" id="menu-icon"></a>
+  </div>
+  <div class="control">
+    <button class="bluebutton" id="loadxml" type="button">Load XML</button>
+    <button class="bluebutton" id="loadlocalxml" type="button">Upload File</button>
+    <input class="fileinput" type="file" id="input">
+    <button class="bluebutton" id="newxml" type="button">New</button>
+    <button class="bluebutton" id="generate" type="button">Generate XML</button>
+    <button class="bluebutton" id="remove" type="button">Remove Nodes</button>
+    <button class="bluebutton input" id="addnode" type="button">Add Node</button>
+    <input type="text" id="nodeslabel" placeholder="Label">
+    <button class="bluebutton input" id="addmultiplenodes" type="button">Add Multiple Nodes</button>
+    <input type="text" id="nodes" size="1">
+    <button class="bluebutton" type="button" id="modifyedges">Update Edges</button>
+    <span>New Source </span><input type="text" id="source" size="1">
+  </div>  
+
+    <div id="top">
+      <div id="canvas"></div>
+    </div>
+    <div id="dropdown"></div>
+
+  <!-- Vertikales Menü-->  
+  <div class="verticalControl">
+  <div class="logoVertical">
+    <a href="http://www.student.hs-mittweida.de/~draabe1/epages/xml_editor.html" id="menu-icon"></a>
+  </div>
+    <button class="bluebuttonVertical" id="loadlocalxmlVertical" type="button">
+      <img src="http://www.iconsdb.com/icons/download/white/upload-32.png" class="white">
+      <img src="http://www.iconsdb.com/icons/download/soylent-red/upload-32.png" class="soylent-red">
+    </button>
+     <button class="bluebuttonVertical" id="newxmlVertical" type="button">
+      <img src="http://www.iconsdb.com/icons/download/white/new-32.png" class="white">
+      <img src="http://www.iconsdb.com/icons/download/soylent-red/new-32.png" class="soylent-red">
+    </button>
+    <button class="bluebuttonVertical" id="generateVertical" type="button">
+      <img src="http://www.iconsdb.com/icons/download/white/save-32.png" class="white">
+      <img src="http://www.iconsdb.com/icons/download/soylent-red/save-32.png" class="soylent-red">
+    </button>
+    <button class="bluebuttonVertical" id="addVertical" type="button">
+      <img src="http://www.iconsdb.com/icons/download/white/add-row-32.png" class="white">
+      <img src="http://www.iconsdb.com/icons/download/soylent-red/add-row-32.png" class="soylent-red">
+    </button>
+  </div>
+  
+  
+    
+    
+    <script type="text/javascript">
+
+//Dateiauswahlfeld
+function handleFileSelect(evt){
+    var xmlFile = $("#input").get(0).files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = function(eventXMLReadFinished){
+      var xmlData               = eventXMLReadFinished.target.result;
+      var parser                = new DOMParser();
+      var parsedXML             = $.parseXML(xmlData);
+      var parsedXMLToArray      = $(parsedXML).find("*").toArray();
+      save.receivedNodesFromXML = parsedXMLToArray;
+      $("#loadxml").click();
+    };
+    fileReader.readAsText(xmlFile);
+};
+
+document.getElementById("input").addEventListener("change", handleFileSelect, false);
+            
+var help = new helpfns();
+
+var save = {
+
+   arrayLabel                : [],
+   arrayEdges                : [],
+   arrayPositions            : [],
+   width                     : $(document).width() - 20,
+   height                    : $(document).height() - 60,
+   receivedNodesFromXML      : help.ajax(),
+   allAttributes             : [],
+   buttonID                  : undefined,
+   nodeID                    : undefined,
+   edgeCache                 : null,
+   edgeChilds                : [],
+   state                     : undefined,
+   root                      : undefined,
+};
+    
+  var arrayLabel = [];
+  var arrayEdges = [];
+  var arrayPositions = [];
+  var width = $(document).width() - 20;
+  var height = $(document).height() - 60;
+  
+ // var knoten = help.ajax();
+ // var arrAtt = help.knotenAttribute(knoten);
+ //allAttr[0] = arrAtt;
+  var allAttr = [];  
+ 
+ 
+          document.getElementById("generate").disabled = true;
+          document.getElementById("addnode").disabled = true;
+          document.getElementById("addmultiplenodes").disabled = true;
+          document.getElementById("modifyedges").disabled = true;
+          document.getElementById("remove").disabled = true;
+          $("#generate").css({"opacity":"0.2" });
+          $("#addnode").css({"opacity":"0.2" });
+          $("#addmultiplenodes").css({"opacity":"0.2" });
+          $("#modifyedges").css({"opacity":"0.2" });
+          $("#remove").css({"opacity":"0.2" });
+
+          function enableButtons(){
+            document.getElementById("generate").disabled = false;
+            document.getElementById("addnode").disabled = false;
+            document.getElementById("addmultiplenodes").disabled = false;
+            document.getElementById("modifyedges").disabled = false;
+            document.getElementById("remove").disabled = false;
+            $("#generate").css({"opacity":"1" });
+            $("#addnode").css({"opacity":"1" });
+            $("#addmultiplenodes").css({"opacity":"1" });
+            $("#modifyedges").css({"opacity":"1" });
+            $("#remove").css({"opacity":"1" });
+        };
+
+          $("#loadxml").click(function(){
+            $("#canvas").empty();
+              var g = new Graph();
+              addNodes(save.receivedNodesFromXML, g);  
+              addEdges(save.receivedNodesFromXML, g);
+              redraw(g);
+              save.allAttributes.push(help.knotenAttribute(save.receivedNodesFromXML));
+              this.disabled = true;
+              $(this).css({"opacity":"0.2" });
+              document.getElementById("newxml").disabled = true;
+              $("#newxml").css({"opacity":"0.2" });
+              enableButtons();
+              console.log(save.allAttributes)
+             });
+
+          $("#loadlocalxml").click(function(){
+            $("#input").click();
+          });
+
+          $("#newxml").click(function(){
+            var g = new Graph();
+            g.addNode(0, {render: renderMainFunction, x:100, y:40, label: "Transformations"});
+            g.addNode(1, {render: renderMainFunction, x:130, y:100, label: "Objects"});
+            g.addEdge(0, 1, {directed: true});
+            save.allAttributes.push([]);
+            save.allAttributes[0].push([], 0);
+            save.allAttributes[0].push([], 1);
+             $(this).css({"opacity":"0.2" });
+            document.getElementById("loadxml").disabled = true;
+            $("#loadxml").css({"opacity":"0.2" });
+            enableButtons();
+            redraw(g);
+          });
+
+          $("#generate").click(function(){
+            help.generateXML();
+          });
+
+
+          $("#addnode").click(function(){
+            $("#canvas").empty();
+            var g = new Graph();
+            var newID = _.last(arrayLabel)+1;
+             if($("#nodeslabel").val() != ""){
+              var newLabel = $("#nodeslabel").val();
+            }else{
+              var newLabel = "Label";
+            }
+            g.addNode(newID, {render: renderMainFunction, x: 800, y: 40, label: newLabel});
+            save.allAttributes[0].push([], newID);
+            if($("#source").val() != ""){
+              arrayEdges.push([$("#source").val(), newID]);
+            }else{}
+            help.update(g);
+            redraw(g);
+            
+          });  
+
+          $("#addmultiplenodes").click(function(){
+            $("#canvas").empty();
+            var g = new Graph();
+            var newID = _.last(arrayLabel);
+            var newLabel = $("#nodeslabel").val();
+            var x = 1200;
+            for(var i=1; i<=parseInt($("#nodes").val()); i++){
+              g.addNode(newID+i, {render: renderMainFunction, x: x, y: 20+40*i, label: newLabel});
+            };
+            help.update(g);
+            redraw(g);
+            //TODO Edges und Attribute
+          });
+
+           $("#modifyedges").click(function(){
+            $("#canvas").empty();
+            var g = new Graph();
+            help.update(g);
+            redraw(g);
+          });
+
+           $("#remove").click(function(){
+            $("#canvas").empty();
+            var g = new Graph();
+            //TODO Positions
+            help.update(g);
+            redraw(g);
+           });
+
+           //Vertikales Menü
+           $("#loadlocalxmlVertical").click(function(){
+            $("#input").click();
+          });
+
+           $("#newxmlVertical").click(function(){
+            $("#newxml").click();
+          });
+
+           $("#generateVertical").click(function(){
+            $("#generate").click();
+          });
+
+           $("#addVertical").click(function(){
+            $("#addnode").click();
+          });
+
+     
+//=========================================================================================================================================================================
+
+            function redraw(g){
+              document.getElementById("addnode").disabled = false;
+              document.getElementById("addmultiplenodes").disabled = false;
+              arrayLabel = [];
+              var layouter = new Graph.Layout.Ordered(g);
+              layouter.layout();
+              var renderer = new Graph.Renderer.Raphael("canvas", g, save.width, save.height="5000");
+              renderer.draw();
+              arrayEdges = [];
+              for(var i=0; i<g.edges.length; i++){
+                arrayEdges.push([g.edges[i].source.id, g.edges[i].target.id]);
+                };
+            };        
+
+ 
+            function addNodes(savekn, g) {
+
+                  $.each(savekn, function(i, element){ 
+                   if(i === 0){
+                    save.root = element.nodeName;
+                   }
+                   if(!$(element).attr("x")){
+                    var parentNode = element.parentNode;
+                    var parentNodeCounter = 1;
+                    //Anzahl Elternelemente hochzählen, wenn Elternelement nicht dem Rootelement entspricht
+                    while(parentNode.nodeName != save.root && element.nodeName != save.root){
+                      parentNode = parentNode.parentNode;
+                      parentNodeCounter++;
+                    }
+                    if(i === 0){
+                      var xCoo = 100;
+                      var yCoo = 20+30*(i+1);
+                    }else{
+                      var xCoo = 100+70*parentNodeCounter;
+                      var yCoo = 20+30*(i+1);
+                    }
+                    
+                  }
+                   else{
+                    var xCoo = parseInt($(element).attr("x"))+65;
+                    var yCoo = parseInt($(element).attr("y"));
+                   }
+
+                   //parseInt für y-Koordinate, damit sie nicht als String in der Renderfunktion empfangen wird, weil dort +10 addiert wird und diese einfach an den String gehangen wird
+                      g.addNode(i, {label: element.nodeName, labelAttr: help.knotenAttribute(save.receivedNodesFromXML)[i*2], render: renderMainFunction, x: xCoo, y: yCoo});
+
+                    $(element).removeAttr("x");
+                    $(element).removeAttr("y");   
+                  }); 
+
+          }; //addNodes zu
+               
+
+            function addEdges(savekn, g){
+               $.each(savekn, function(i, element){
+                $(element).attr("id", i);
+                var parentNode = element.parentNode;
+                //console.log($(parentNode).attr("id"), parentNode.nodeName+" - "+i, element.nodeName)
+                if(i != 0){
+                  g.addEdge(parseInt($(parentNode).attr("id")), i, {directed: true});
+                };
+              });
+                $.each(savekn, function(l, el){
+                  $(el).removeAttr("id");
+                });
+            }
+                      
+                     
+
+
+
+       var renderMainFunction = function(r, node) {
+
+        console.log(r)
+
+
+      //Knoten zeichnen
+        if(node.id == 0){
+          var set = r.set().push(r.rect(node.x-65, node.y+10, 140, 18).attr({"fill": "#E26F50", "stroke-width": 0, r : 1})).push(r.text(node.x+10, node.y+18, node.label).attr({"font-size":"12px", "font-family":"Maven Pro", "fill":"#FFFFFA"}).transform(""));
+                  set.push(r.text(node.x-57, node.y+18, node.id).attr({"font-size":"11px", "fill":"#FFF"}));
+        }else{
+          var set = r.set().push(r.rect(node.x-65, node.y+10, 140, 18).attr({"fill": "#249CD5", "stroke-width": 0, r : 1})).push(r.text(node.x+10, node.y+18, node.label).attr({"font-size":"12px", "font-family":"Maven Pro", "fill":"#FFFFFA"}).transform(""));
+                  set.push(r.text(node.x-57, node.y+18, node.id).attr({"font-size":"11px", "fill":"#FFFFFA"}));
+        }
+        
+     
+      /* custom tooltip attached to the set */
+      //set.items.forEach(function(el) {el.tooltip(r.set().push(r.rect(0, 0, 300, 30).attr({"fill": "#00BF32", "stroke-width": 0, r : 2})).push(r.text(20, 20, node.labelAttr).attr({"font-size":"9px"})))});
+  
+      
+      
+         
+        arrayLabel.push(node.label, node.id);
+       
+        if(_.indexOf(save.arrayPositions, node.id) == -1){
+          save.arrayPositions.push(node.id, [Math.round(set.getBBox().x), Math.round(set.getBBox().y)]);
+        }else{console.log(node.id + " ist bereits vorhanden!")}
+        
+     
+      //new Source festlegen
+        set.dblclick(function(){
+          var targetNode = node.id;
+          if(!node.edges[0]){
+            arrayEdges.push([parseInt($("#source").val()), node.id]);
+            set[0].attr({"fill": "#38B2CF"});
+            set.push((r.text(set.getBBox().x+60, set.getBBox().y+8, $("#source").val()+" -->").attr({"font-size":"11px", "fill":"white"})));
+          } else{
+              for(var i=0; i<arrayEdges.length; i++){
+                var where = _.findWhere(arrayEdges, [, targetNode]);
+                var ind = _.indexOf(arrayEdges, where);
+              };
+                where.splice(0, 1, parseInt($("#source").val()));
+                //arrayEdges.splice(ind, 1, where);
+                set[0].attr({"fill": "#38B2CF"});
+                set.push((r.text(set.getBBox().x+60, set.getBBox().y+8, $("#source").val()+" -->").attr({"font-size":"11px", "fill":"white"})));
+            };
+        });        
+        
+      
+
+        set.mouseup(function(){
+          if(save.state != node.id){
+            var x = set.getBBox().x;
+            var y = set.getBBox().y;
+            save.arrayPositions.splice(_.indexOf(save.arrayPositions, node.id)+1, 1, [x, y]);
+          }
+        });
+        
+       
+        set[2].click(function(){
+          var xPo = this.getBBox().x;
+          var yPo = this.getBBox().y;
+          nodeMenu(r, xPo, yPo);
+        });
+
+
+
+        function nodeMenu(r, xPo, yPo) {
+         
+         var set_2 = r.set().push(r.rect(xPo, yPo, 190, 144).attr({"fill-opacity": 0,"fill": "#DDD", "stroke-width": 0, r: 1}).transform("s0")); //0
+                       set_2.push(r.image("buttons/undo.png", xPo+4, yPo+3, 80, 25).attr({"fill": "#00BF32", "stroke-width": 0.2, r: 1}).transform("s0")); //1 
+                       set_2.push(r.image("buttons/delete.png", xPo+4, yPo+31, 80, 25).attr({"fill": "#00BF32", "stroke-width": 0.2, r: 1}).transform("s0"));//2
+                       set_2.push(r.image("buttons/attributes.png" ,xPo+4, yPo+59, 80, 25).attr({"fill": "#00BF32", "stroke-width": 0.2, r: 1}).transform("s0"));//3
+                       set_2.push(r.image("buttons/attr_save.png" ,xPo+4, yPo+87, 80, 25).attr({"fill": "#00BF32", "stroke-width": 0.2, r: 1}).transform("s0"));//4
+                       set_2.push(r.image("buttons/set_as_source.png", xPo+4, yPo+115, 80, 25).attr({"fill": "#00BF32", "stroke-width": 0.2, r: 1}).transform("s0"));//5
+                      // set_2.push(r.rect(xPo+164, yPo-28, 27, 27).attr({"fill": "#DDD", "stroke-width": 0, r: 1, "fill-opacity": 1}).transform("s0")); //6
+                       set_2.push(r.image("buttons/close.png", xPo+170, yPo-22, 20, 20).attr({"fill": "#00BF32", "stroke-width": 0.2, r: 1}).transform("s0"));//6
+                       
+
+          
+        set_2.animate({transform: "t130,0,s1", "fill-opacity": 1}, 140);
+        
+        set_2[6].click(function(){
+          set_2.animate({transform: "t0,0,s0", "fill-opacity": 0}, 140, function(){set_2.remove()});
+        });
+
+        set_2[5].click(function(){
+          $("#source").val(node.id);
+        });
+        
+        
+
+
+        //Alle Attribute aus Select und Textfeld einlesen und speichern
+        var newAtt = [];
+        set_2[4].click(function(){
+          var ind = _.indexOf(save.allAttributes[0], node.id);
+          var element = document.getElementById("dropdown");
+          for(var i=0; i<element.children.length; i++){
+            if($("#div_"+i).children()[0].value && $("#div_"+i).children()[1].value != ""){
+              newAtt.push([$("#div_"+i).children()[0].value, $("#div_"+i).children()[1].value]);
+            }
+          }
+           save.allAttributes[0].splice(ind-1, 1, newAtt);
+          set_2.animate({transform: "t0,0", "fill-opacity": 0}, 160, function(){set_2.remove()});
+          $("#dropdown").css({"visibility": "hidden"});
+          dropdownRemove();
+        });
+
+        //delete nodes
+        set_2[2].click(function(){
+          save.state = node.id;
+          set[0].attr({"fill":"red", "fill-opacity": 0.1});
+          set[1].attr({"fill-opacity": 0.1});
+          set[2].attr({"fill-opacity": 0.1});
+          document.getElementById("addnode").disabled = true;
+          document.getElementById("addmultiplenodes").disabled = true;
+          //Nodename löschen
+          var indexOfNodeIdInArrayLabel = _.indexOf(arrayLabel, node.id);
+          arrayLabel.splice(indexOfNodeIdInArrayLabel-1, 2);
+          //Edges anpassen
+          save.edgeCache = _.findWhere(arrayEdges, [, node.id]);
+          var indexEdge = _.indexOf(arrayEdges, save.edgeCache);
+          for(var i=0; i<=arrayEdges.length; i++){
+            var find = _.findWhere(arrayEdges, [node.id, i]);
+            if(find != undefined){
+              save.edgeChilds.push(i);
+              find.splice(0, 2, save.edgeCache[0], i);
+            };
+          };
+          arrayEdges.splice(indexEdge, 1);
+          save.arrayPositions.splice(_.indexOf(save.arrayPositions, node.id), 2);
+          set_2.animate({transform: "t0,0", "fill-opacity": 0}, 160, function(){set_2.remove()});
+        });
+
+     
+        //add Attribute
+        set_2[3].click(function(){
+          console.log(save.allAttributes[0][node.id*2]);
+          //if(save.allAttributes[0][_.indexOf(save.allAttributes[0], node.id)] != ""){
+            $("#dropdown").css({ left: this.getBBox().x+190, top: this.getBBox().y-23, "visibility": "visible" });
+            dropdown();
+         // }else{
+         // $("#dropdown").css({ left: this.getBBox().x+190, top: this.getBBox().y+3, "visibility": "visible" });
+           var arr = _.uniq(_.compact(help.getAttributeNames(save.receivedNodesFromXML)));
+           
+          var element = document.getElementById("dropdown");
+          var newSelectID = element.children.length;
+          var div = document.createElement("div");
+          div.id = "div_"+newSelectID;
+          var sel = document.createElement("select");
+          var txt = document.createElement("input");
+          txt.size = 30;
+          sel.setAttribute("onchange", "help.deleteAttribute("+newSelectID+")");
+          for(var k=0; k<arr.length; k++){
+              var opt = document.createElement("option");
+              opt.textContent = arr[k];
+              if(k == 0){
+                $(opt).css({"background":"red", "color":"white"});
+              }
+              if(k == 1){
+                opt.selected = true;
+              }
+            $(sel).append(opt);
+            $("#"+div.id).append(sel);
+            $("#"+div.id).append(txt);
+            $("#dropdown").append(div);
+        //  }
+          }          
+        });
+
+        
+          //undo delete nodes
+         set_2[1].click(function(){
+          save.state = undefined;
+          set[0].attr({"fill":"#00BF32", "fill-opacity": 0.6});
+          set[1].attr({"fill-opacity": 1});
+          set[2].attr({"fill-opacity": 1});
+          arrayLabel.push(node.label, node.id);
+          arrayEdges.push(save.edgeCache);
+          for(var i=0; i<save.edgeChilds.length; i++){
+            var find = _.findWhere(arrayEdges, [, save.edgeChilds[i]]);
+            if(find != undefined){
+              find.splice(0, 2, node.id, save.edgeChilds[i]);
+            }
+          }
+          save.arrayPositions.push(node.id, [Math.round(set.getBBox().x), Math.round(set.getBBox().y)]);
+          if(arrayLabel.length/2 != save.receivedNodesFromXML.length){
+          }else{
+            document.getElementById("addnode").disabled = false;
+            document.getElementById("addmultiplenodes").disabled = false;
+          };
+          console.log(arrayLabel);
+        });
+      };//nodeMenu zu
+
+        
+      
+      
+      function dropdown(){
+        //arr --> Alle Attributenamen (Alias, Value, Target usw.), die in dem Dokument vorkommen
+        if(save.state == undefined){
+          var arr = _.uniq(_.compact(help.getAttributeNames(save.receivedNodesFromXML)));
+        console.log(arr, arr.length);
+        var indexOfNodeIdInAllAttributes = _.indexOf(save.allAttributes[0], node.id);
+        var AttributesFromSpecificNode = save.allAttributes[0][indexOfNodeIdInAllAttributes-1];
+          for(var i=0; i<AttributesFromSpecificNode.length; i++){
+          var div = document.createElement("div");
+          div.id = "div_"+i;
+          var sel = document.createElement("select");
+          sel.setAttribute("onchange", "help.deleteAttribute("+i+")");
+          var txt = document.createElement("input");
+          txt.size = 30;
+          txt.type = "text";
+          for(var k=0; k<arr.length; k++){
+              var opt = document.createElement("option");
+              opt.textContent = arr[k];
+              if(k == 0){
+                $(opt).css({"background":"red", "color":"white"});
+              }
+              //Prüfen welche Attribute in Liste mit Attributen von jetzigem Knoten übereinstimmen
+              for(var j=0; j<AttributesFromSpecificNode[i].length; j++){
+                if(AttributesFromSpecificNode[i][0] == arr[k]){
+                  opt.selected = true;
+                  $(txt).val(AttributesFromSpecificNode[i][1]);
+                };
+              };
+            $(sel).append(opt);
+            $("#"+div.id).append(sel);
+            $("#"+div.id).append(txt);
+            $("#dropdown").append(div);
+          };
+        };    
+        save.state = 1;
+        }
+        
+      }; //dropdown zu
+
+
+      
+
+      //Elemente aus Dropdown wieder löschen
+      function dropdownRemove(){
+        var el = document.getElementById("dropdown");
+        while(el.firstElementChild){
+          el.removeChild(el.firstElementChild);
+        };
+        newAtt = [];
+        save.state = undefined;
+      };
+
+
+        //text editing function for nodes     
+        r.inlineTextEditing(set[1]);
+        // Start inline editing on click
+        set[1].click(function(){
+          var indexOfNodeIdInArrayLabel = _.indexOf(arrayLabel, node.id);
+        //  console.log(arrayLabel, indexOfNodeIdInArrayLabel);
+            // Retrieve created <input type=text> field
+          var input = this.inlineTextEditing.startEditing();
+          input.addEventListener("blur", function(e){
+            // Stop inline editing after blur on the text field
+            set[1].inlineTextEditing.stopEditing(node);
+            arrayLabel.splice(indexOfNodeIdInArrayLabel-1, 1, node.label);
+            }, true);
+        });
+
+        return set; 
+    };
+   
+
+        </script>
+
+        
+        
+    </body>
+
+</html>
